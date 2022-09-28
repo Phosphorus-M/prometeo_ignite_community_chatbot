@@ -1,0 +1,23 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "api": "^4.5.2",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.2",
+    "nedb": "^1.8.0",
+    "node-telegram-bot-api": "^0.59.0",
+    "nodemon": "^2.0.20",
+    "redis": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.57.1"
+  }
+}
