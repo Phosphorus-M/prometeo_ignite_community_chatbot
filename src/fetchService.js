@@ -36,7 +36,7 @@ const fetchProviders = () => {
   return axios.request(options)
 }
 
-const fetchDetailProvider = (provider_code) => {
+const fetchProviderDetail = (provider_code) => {
   const options = {
    method: 'GET',
    url: `https://banking.sandbox.prometeoapi.com/provider/${provider_code}/`,
@@ -49,8 +49,36 @@ const fetchDetailProvider = (provider_code) => {
   return axios.request(options)
 }
 
+const fetchHolderInformation = (key) => {
+  const options = {
+   method: 'GET',
+   url: `https://banking.sandbox.prometeoapi.com/info/?key=${key}`,
+   headers: {
+     accept: 'application/json',
+     'X-API-Key': 'K3A0As0YKCVs3Y5KMbVeLN07SDSHPTevIETFQqfRdrRY9SOiqBeLuUtPcunxEOsU'
+   }
+  };
+
+  return axios.request(options)
+}
+
+const fetchListOfCreditCards = (key) => {
+  const options = {
+   method: 'GET',
+   url: `https://banking.sandbox.prometeoapi.com/credit-card/?key=${key}`,
+   headers: {
+     accept: 'application/json',
+     'X-API-Key': 'K3A0As0YKCVs3Y5KMbVeLN07SDSHPTevIETFQqfRdrRY9SOiqBeLuUtPcunxEOsU'
+   }
+  };
+
+  return axios.request(options)
+}
+
 module.exports = {
   login,
   fetchProviders,
-  fetchDetailProvider
+  fetchProviderDetail,
+  fetchHolderInformation,
+  fetchListOfCreditCards
 }

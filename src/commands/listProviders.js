@@ -1,5 +1,3 @@
-const bot = require("../bot");
-const RedisClient = require("../database");
 const login = require("../fetchService");
 
 const listaDePaises = {
@@ -15,27 +13,22 @@ const listaDePaises = {
 }
 const setListProvidersCommand = (bot) => {
     bot.onText(/\/listProviders/, async (msg, match) => {
-        await RedisClient.connect();
         const chatId = msg.chat.id;
     
         try {
             const datosDeLosProveedores = await login.fetchProviders();
-            console.log(datosDeLosProveedores)
-            let response = `*Nuestros proveedores:*`;
+            let response = `<b>Nuestros proveedores:</b>`;
             datosDeLosProveedores.data.providers.forEach(proveedor => {
                 response += `\n\n${proveedor.name} - ${listaDePaises[proveedor.country] ?? proveedor.country}\n`
-                response += `\n\nProvider Code: ${proveedor.code}`
+                response += `Provider Code: ${proveedor.code}\n`
             })
     
-            bot.sendMessage(chatId, response, {parse_mode:"Markdown"});
+            bot.sendMessage(chatId, response, {parse_mode:"HTML"});
         } catch (error) {
             console.error(error);
             bot.sendMessage(chatId, 'Hubo un problema al obtener la lista de Proveedores, inténtelo más tarde.');
     
-        } finally {
-            await RedisClient.disconnect()
-        }
-    
+        } 
     });
 }
 
